@@ -37,7 +37,7 @@ function App() {
                     minCount={minCount}
                     setCount={setCount}
                 />
-                <SettingCounterMemo
+                <SettingCounter
                     nonError={nonError}
                     setNonError={setNonError}
                     minCount={minCount}

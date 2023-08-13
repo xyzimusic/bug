@@ -5,13 +5,13 @@ import {logDOM} from '@testing-library/react';
 
 
 type InputNumberTypeProps = {
-    countValue:number
-    callback:(value:number)=>void
-    color:string
+    countValue: number
+    callback: (value: number) => void
+    color: string
 
 }
-export const InputNumber:FC<InputNumberTypeProps> = (props) => {
-    const {countValue,callback, color} = props
+export const InputNumber: FC<InputNumberTypeProps> = (props) => {
+    const {countValue, callback, color} = props
     const [value, setValue] = useState<boolean>(false);
 
 
@@ -22,12 +22,12 @@ export const InputNumber:FC<InputNumberTypeProps> = (props) => {
 
     return (
 
-            <Input
-                value={props.countValue}
-                onChange={handleNameChange}
-                type="number"
-                color={color}
-            ></Input>
+        <Input
+            value={props.countValue}
+            onChange={handleNameChange}
+            type="number"
+            color={color}
+        ></Input>
 
     );
 };

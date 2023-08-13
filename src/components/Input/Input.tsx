@@ -17,7 +17,7 @@ export const Input: FC<InputPropsType> = (props) => {
 
 
     return (
-        <StyledInput type={type} value={value}  color = {color} onChange={handleChange}/>
+        <StyledInput type={type} value={value}  color={color} onChange={handleChange}/>
     );
 };
 
