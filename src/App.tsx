@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Counter} from './components/Counter/Counter';
+import React, {useEffect, useState} from 'react';
+import {SettingCounter} from './components/SettingCounter/SettingCounter';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    let [count, setCount] = useState<number>(0);
+    const [minCount, setMinCount] = useState<number>(1);
+    const [maxCount, setMaxCount] = useState<number>(5);
+    const [nonError, setNonError] = useState<boolean>(true);
+
+    useEffect(()=>{
+            const storedObjectString = localStorage.getItem("minMaxParams");
+            if(storedObjectString){
+               let newValue =  JSON.parse(storedObjectString);
+
+                setMinCount(+newValue.min)
+                setMaxCount(+newValue.max)
+            }
+        },
+        [])
+
+
+    const SettingCounterMemo = React.memo(SettingCounter)
+
+    return (
+
+        <div className="container">
+            <div className='container-wrap'>
+                <Counter
+                    nonError={nonError}
+                    setError={setNonError}
+                    count={count}
+                    maxCount={maxCount}
+                    minCount={minCount}
+                    setCount={setCount}
+                />
+                <SettingCounterMemo
+                    nonError={nonError}
+                    setNonError={setNonError}
+                    minCount={minCount}
+                    maxCount={maxCount}
+                    setCount={setCount}
+                    setMinCount={setMinCount}
+                    setMaxCount={setMaxCount}
+                />
+
+            </div>
+        </div>
+    );
 }
 
+type minMaxParamsType = {
+    min:string
+    max:string
+}
 export default App;
